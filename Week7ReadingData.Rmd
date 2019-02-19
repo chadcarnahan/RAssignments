@@ -1,0 +1,52 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+test <- read_csv("https://www.iun.edu/~cisjw/ds/files/data/test.csv",
+                 col_types = cols(
+  Survived = col_character(),
+  Pclass = col_character(),
+  Name = col_character(),
+  Sex = col_character(),
+  Age = col_double(),
+  SibSp = col_integer(),
+  ParentChild = col_integer(),
+  TicketNumber = col_character(),
+  Fare = col_double(),
+  Cabin = col_character(),
+  Port = col_character(),
+  LiftBoat = col_integer()
+))
+
+
+```
+
+```{r}
+train <- read_csv("https://www.iun.edu/~cisjw/ds/files/data/train.csv",
+                  col_types = cols(
+                    Survived = col_character(),
+                    Pclass = col_character(),
+                      Sex = col_character(),
+  Age = col_double(),
+  SibSp = col_integer(),
+  ParentChild = col_integer(),
+  TicketNumber = col_character(),
+  Fare = col_double(),
+  Cabin = col_character(),
+  Port = col_character(),
+  LifeBoat = col_character()),
+  na = "NA"
+                    
+                  
+)
+
+train %>% drop_na()
+
+train %>% filter(!is.na(Age)) %>% summarise(mean(Age))
+
+train %>% filter(Sex == "Female")
+
+train %>% filter(Survived == "Yes" & Sex == "Female") %>% summarise(n())
+```
